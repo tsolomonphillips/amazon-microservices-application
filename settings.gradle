@@ -1,0 +1,5 @@
+/*rootProject.name = 'amazon-microservice'*/
+include 'applications/account-address'
+include 'applications/order-orderline'
+include 'applications/shipment'
+include 'applications/product'
