@@ -48,7 +48,7 @@ public class AccountControllerTest
     }
 
     @Test
-    public void AddAccount() throws Exception
+    public void addAccount() throws Exception
     {
         Account testAccount = new Account(1, "Thomas", "Merton",
                 "thomas.merton@gmail.com");
