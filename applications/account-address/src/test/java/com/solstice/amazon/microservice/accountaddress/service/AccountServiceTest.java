@@ -16,9 +16,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
@@ -92,14 +90,14 @@ public class AccountServiceTest
 
 
     }
-
+    
     @Test
     public void deleteAccount()
     {
         Account account = new Account(1, "Chris", "Paul",
                 "chris.paul@gmail.com");
 
-        doNothing().when(accountRepository.deleteById(account.getAccountId()).)
+        verify(accountRepository).deleteById(anyInt());
     }
 
 }

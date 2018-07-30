@@ -36,7 +36,7 @@ public class Account
         this.addressList = new ArrayList<>();
     }
 
-    public int getAccountId()
+    public Integer getAccountId()
     {
         return accountId;
     }
