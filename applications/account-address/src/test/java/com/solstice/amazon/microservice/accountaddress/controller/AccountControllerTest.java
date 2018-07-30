@@ -109,7 +109,7 @@ public class AccountControllerTest
         Account testAccount = new Account(1, "Thomas", "Merton",
                 "thomas.merton@gmail.com");
 
-        Account accountToUpdate = new Account(1);
+        Account accountToUpdate = new Account(1, "Allen", "Iverson", "allen.iverson@gmail.com");
 
         when(accountService.updateAccount(accountToUpdate.getAccountId(), testAccount))
                 .thenReturn(new ResponseEntity(HttpStatus.ACCEPTED));
