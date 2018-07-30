@@ -1,5 +1,6 @@
 package com.solstice.amazon.microservice.accountaddress.model;
 
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,7 @@ public class Account
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "account_id")
-    private final Integer accountId;
+    private Integer accountId;
 
     private String firstName;
     private String lastName;
@@ -21,13 +22,12 @@ public class Account
     @JoinColumn(name = "address_Id")
     private List<Address> addressList;
 
-    public Account(Integer accountId)
+    public Account()
     {
-        this.accountId = accountId;
+
     }
 
-    public Account(Integer accountId, String firstName, String lastName,
-                   String emailAddress)
+    public Account(Integer accountId, String firstName, String lastName, String emailAddress)
     {
         this.accountId = accountId;
         this.firstName = firstName;

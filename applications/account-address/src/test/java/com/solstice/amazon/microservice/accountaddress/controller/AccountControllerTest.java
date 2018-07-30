@@ -58,7 +58,7 @@ public class AccountControllerTest
         mockMvc
                 .perform(post("/accounts")
                 .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
+                .andExpect(status().isCreated())
                 .andReturn();
     }
 
