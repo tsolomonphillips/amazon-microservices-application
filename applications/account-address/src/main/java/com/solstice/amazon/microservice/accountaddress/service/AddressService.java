@@ -1,6 +1,8 @@
 package com.solstice.amazon.microservice.accountaddress.service;
 
+import com.solstice.amazon.microservice.accountaddress.model.Account;
 import com.solstice.amazon.microservice.accountaddress.model.Address;
+import com.solstice.amazon.microservice.accountaddress.respository.AccountRepository;
 import com.solstice.amazon.microservice.accountaddress.respository.AddressRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,14 +14,19 @@ import java.util.List;
 public class AddressService
 {
     private AddressRepository addressRepository;
+    private AccountRepository accountRepository;
 
-    public AddressService(AddressRepository addressRepository)
+    public AddressService(AddressRepository addressRepository, AccountRepository accountRepository)
     {
         this.addressRepository = addressRepository;
+        this.accountRepository = accountRepository;
     }
 
-    public ResponseEntity addAddress(Address address)
+    public ResponseEntity addAddress(Address address, Integer accountId)
     {
+        Account account = accountRepository.getOne(accountId);
+        address.setAccount(account);
+
         addressRepository.save(address);
         return new ResponseEntity(HttpStatus.CREATED);
     }

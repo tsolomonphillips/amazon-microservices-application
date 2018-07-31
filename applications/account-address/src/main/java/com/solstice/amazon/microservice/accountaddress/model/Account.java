@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "accountaddressdb")
+@Table(name = "account")
 public class Account
 {
     @Id
@@ -19,8 +19,7 @@ public class Account
     private String emailAddress;
 
     @OneToMany
-    @JoinColumn(name = "address_Id")
-    private List<Address> addressList;
+    private List<Address> addressList = new ArrayList<>();
 
     public Account()
     {
@@ -33,7 +32,6 @@ public class Account
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailAddress = emailAddress;
-        this.addressList = new ArrayList<>();
     }
 
     public Integer getAccountId()
