@@ -1,7 +1,6 @@
 package com.solstice.amazon.microservice.orderorderline.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import javax.persistence.*;
 
 @Entity
@@ -19,7 +18,7 @@ public class OrderLine
     private Integer shipmentId;
 
     @ManyToOne
-    @JsonManagedReference
+    @JsonBackReference
     private Order order;
 
     public OrderLine()
@@ -34,7 +33,6 @@ public class OrderLine
         this.productId = productId;
         this.quantity = quantity;
         this.price = price;
-        this.totalPrice += quantity * price;
         this.shipmentId = shipmentId;
     }
 
@@ -71,6 +69,11 @@ public class OrderLine
     public void setPrice(Double price)
     {
         this.price = price;
+    }
+
+    public void setTotalPrice(Double totalPrice)
+    {
+        this.totalPrice = quantity * price;
     }
 
     public Double getTotalPrice()

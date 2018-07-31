@@ -19,11 +19,11 @@ public class OrderController
         this.orderService = orderService;
     }
 
-    @PostMapping("")
+    @PostMapping("/{accountId}/{shippingAddressId}")
     public Order addOrder(@RequestBody Order order, @PathVariable Integer accountId,
-                          @PathVariable Integer shippingAddress)
+                          @PathVariable Integer shippingAddressId)
     {
-        return orderService.addOrder(order, accountId, shippingAddress);
+        return orderService.addOrder(order, accountId, shippingAddressId);
     }
 
     @GetMapping("")
@@ -50,5 +50,11 @@ public class OrderController
     {
         orderService.deleteOrder(orderId);
         return new ResponseEntity(HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping("/{orderId}/{accountId}")
+    public List<Order> getAllOrdersForAccount(@PathVariable Integer accountId)
+    {
+        return orderService.getAllOrdersForAccount(accountId);
     }
 }

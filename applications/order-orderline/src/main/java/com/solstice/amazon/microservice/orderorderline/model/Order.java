@@ -24,7 +24,7 @@ public class Order
     private Integer accountId;
     private Integer shippingAddressId;
 
-    @OneToMany(mappedBy = "orders")
+    @OneToMany(mappedBy = "order")
     @JsonManagedReference
     private List<OrderLine> orderLineList;
 

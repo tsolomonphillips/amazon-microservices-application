@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/orders/{id}/lines")
+@RequestMapping("/orders/{orderId}/lines")
 public class OrderLineController
 {
     private OrderLineService orderLineService;
@@ -19,6 +19,8 @@ public class OrderLineController
         this.orderLineService = orderLineService;
     }
 
+    // TODO: 7/31/18 Need to refactor this get mapping (see getAllOrderLineItems method) 
+    
     @GetMapping("")
     public List<OrderLine> getAllOrderLines(@PathVariable Integer orderId)
     {
@@ -26,10 +28,9 @@ public class OrderLineController
     }
 
     @PostMapping("")
-    public OrderLine getOneOrderLine(@RequestBody OrderLine orderLine, @PathVariable Integer orderId,
-                                     @PathVariable Integer shipmentId)
+    public OrderLine addOrderLine(@RequestBody OrderLine orderLine, @PathVariable Integer orderId)
     {
-        return orderLineService.addOrderLineItem(orderLine, orderId, shipmentId);
+        return orderLineService.addOrderLineItem(orderLine, orderId);
     }
 
     @PutMapping("")

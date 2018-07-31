@@ -8,7 +8,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -23,15 +22,21 @@ public class OrderLineService
         this.orderRepository = orderRepository;
     }
 
-    public OrderLine addOrderLineItem(OrderLine orderLine, Integer orderId, Integer shipmentId)
+    public OrderLine addOrderLineItem(OrderLine orderLine, Integer orderId)
     {
         Order order = orderRepository.getOne(orderId);
+
         orderLine.setOrder(order);
-        orderLine.setShipmentId(shipmentId);
+        orderLine.setShipmentId(order.getShippingAddressId());
+        orderLine.setTotalPrice(orderLine.getTotalPrice());
+
+        order.getOrderLineList().add(orderLine);
 
         return orderLineRepository.save(orderLine);
     }
 
+    // TODO: 7/31/18 Need to refactor this method (getting a concurrent error message) 
+    
     public List<OrderLine> getAllOrderLineItems(Integer orderId)
     {
         List<OrderLine> orderLineList = orderLineRepository.findAll();
@@ -44,7 +49,9 @@ public class OrderLineService
             }
         }
 
-        return orderLineList;
+        List<OrderLine> newOrderLineList = orderLineList.subList(0, orderLineList.size());
+
+        return newOrderLineList;
     }
 
     public ResponseEntity updateOrderLine(Integer orderLineId, Integer orderId, OrderLine orderLine)
