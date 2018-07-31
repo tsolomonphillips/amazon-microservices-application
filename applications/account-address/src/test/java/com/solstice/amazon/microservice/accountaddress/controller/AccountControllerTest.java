@@ -40,6 +40,8 @@ public class AccountControllerTest
     @InjectMocks
     private AccountController accountController;
 
+    // TODO: 7/31/18 Add security configuration so tests pass (have been getting a 403 error code when running tests)
+
     @Before
     public void setUp()
     {
@@ -117,8 +119,7 @@ public class AccountControllerTest
         String json = gson.toJson(testAccount);
 
         mockMvc
-                .perform(put("/accounts/")
-                        .param("accountId", "1")
+                .perform(put("/accounts/1")
                         .contentType(MediaType.APPLICATION_JSON).content(json))
                 .andExpect(status().isOk())
                 .andReturn();

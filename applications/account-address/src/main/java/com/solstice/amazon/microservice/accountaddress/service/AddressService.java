@@ -22,7 +22,7 @@ public class AddressService
         this.accountRepository = accountRepository;
     }
 
-    public ResponseEntity addAddress(Address address, Integer accountId)
+    public ResponseEntity addAddress(Integer accountId, Address address)
     {
         Account account = accountRepository.getOne(accountId);
         address.setAccount(account);

@@ -9,16 +9,16 @@ public class Product
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "product_id")
-    private final Integer productId;
+    private Integer productId;
 
     private String name;
     private String description;
     private String image;
     private Double price;
 
-    public Product(Integer productId)
+    public Product()
     {
-        this.productId = productId;
+
     }
 
     public Product(Integer productId, String name, String description,

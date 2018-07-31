@@ -40,6 +40,8 @@ public class AddressControllerTest
     @InjectMocks
     private AddressController addressController;
 
+    // TODO: 7/31/18 Add security configuration so tests pass (have been getting a 403 error code when running tests)  
+    
     @Before
     public void setUp()
     {
@@ -55,7 +57,7 @@ public class AddressControllerTest
         Address address = new Address(1, "123", "Sunny Apartment", "New York",
                 "NY", "12504", "U.S", account);
 
-        when(addressService.addAddress(address)).thenReturn(new ResponseEntity(HttpStatus.CREATED));
+        when(addressService.addAddress(1, address)).thenReturn(new ResponseEntity(HttpStatus.CREATED));
 
         mockMvc.perform(post("/addresses")
                 .contentType(MediaType.APPLICATION_JSON))
