@@ -1,6 +1,7 @@
 package com.solstice.amazon.microservice.orderorderline.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -23,8 +24,8 @@ public class Order
     private Integer accountId;
     private Integer shippingAddressId;
 
-    @OneToMany
-    @JoinColumn(name = "orderLineId")
+    @OneToMany(mappedBy = "orders")
+    @JsonManagedReference
     private List<OrderLine> orderLineList;
 
     public Order()
