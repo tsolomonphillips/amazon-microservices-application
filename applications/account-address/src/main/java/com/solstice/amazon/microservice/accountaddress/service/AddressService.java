@@ -36,6 +36,12 @@ public class AddressService
         return addressRepository.findAll();
     }
 
+    public List<Address> getAddressByAccount(Integer accountId)
+    {
+        Account account = accountRepository.getOne(accountId);
+        return addressRepository.findByAccount(account.getAccountId());
+    }
+
     public Address getOneAddress(Integer addressId)
     {
         try
@@ -60,8 +66,14 @@ public class AddressService
         return null;
     }
 
-    public ResponseEntity updateAddress(Integer addressId, Address address)
+    public Address getAddress(Integer addressId)
     {
+        return addressRepository.getOne(addressId);
+    }
+
+    public ResponseEntity updateAddress(Integer addressId, Integer accountId, Address address)
+    {
+        Account account = accountRepository.getOne(accountId);
         Address addressToUpdate = addressRepository.getOne(addressId);
 
         addressToUpdate.setAptBuilding(address.getAptBuilding());
@@ -71,6 +83,8 @@ public class AddressService
         addressToUpdate.setStateProvince(address.getStateProvince());
         addressToUpdate.setZipPostalCode(address.getZipPostalCode());
 
+        addressToUpdate.setAccount(account);
+
         addressRepository.save(addressToUpdate);
         return new ResponseEntity(HttpStatus.CREATED);
     }
@@ -78,6 +92,6 @@ public class AddressService
     public ResponseEntity deleteAddress(Integer addressId)
     {
         addressRepository.deleteById(addressId);
-        return new ResponseEntity(HttpStatus.ACCEPTED);
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 }

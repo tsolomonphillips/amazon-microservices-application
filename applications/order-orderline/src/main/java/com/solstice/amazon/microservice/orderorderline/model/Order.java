@@ -95,7 +95,7 @@ public class Order
         return shippingAddressId;
     }
 
-    public void setShippingAddress(Integer shippingAddressId)
+    public void setShippingAddressId(Integer shippingAddressId)
     {
         this.shippingAddressId = shippingAddressId;
     }

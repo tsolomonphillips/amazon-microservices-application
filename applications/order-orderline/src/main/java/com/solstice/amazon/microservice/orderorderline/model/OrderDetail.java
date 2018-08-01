@@ -1,49 +1,50 @@
-package com.solstice.amazon.microservice.accountaddress.model;
+package com.solstice.amazon.microservice.orderorderline.model;
 
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Entity
-@Table(name = "address")
-public class Address
+import java.util.List;
+
+public class OrderDetail
 {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "address_id")
-    private Integer addressId;
-
+    private String orderNumber;
     private String street;
     private String aptBuilding;
     private String city;
     private String stateProvince;
     private String zipPostalCode;
     private String country;
+    private Double totalPrice;
 
-    @ManyToOne
-    @JoinColumn(name = "account_id")
-    private Account account;
+    @JsonIgnoreProperties({"orderLineId, price, shipmentId"})
+    private List<OrderLine> orderLineListItems;
 
-
-    public Address()
+    public OrderDetail()
     {
 
     }
 
-    public Address(Integer addressId, String street, String aptBuilding,
-                   String city, String stateProvince, String zipPostalCode,
-                   String country, Account account)
+    public OrderDetail(String orderNumber, String street, String aptBuilding, String city, String stateProvince,
+                       String zipPostalCode, String country, Double totalPrice, List<OrderLine> orderLineListItems)
     {
-        this.addressId = addressId;
+        this.orderNumber = orderNumber;
         this.street = street;
         this.aptBuilding = aptBuilding;
         this.city = city;
+        this.stateProvince = stateProvince;
         this.zipPostalCode = zipPostalCode;
         this.country = country;
-        this.account = account;
+        this.totalPrice = totalPrice;
+        this.orderLineListItems = orderLineListItems;
     }
 
-    public Integer getAddressId()
+    public String getOrderNumber()
     {
-        return this.addressId;
+        return orderNumber;
+    }
+
+    public void setOrderNumber(String orderNumber)
+    {
+        this.orderNumber = orderNumber;
     }
 
     public String getStreet()
@@ -106,18 +107,23 @@ public class Address
         this.country = country;
     }
 
-    public void setAccount(Account account)
+    public Double getTotalPrice()
     {
-        this.account = account;
+        return totalPrice;
     }
 
-    public Account getAccount()
+    public void setTotalPrice(Double totalPrice)
     {
-        return account;
+        this.totalPrice = totalPrice;
     }
 
-//    public Integer getAccount()
-//    {
-//        return account.getAccountId();
-//    }
+    public List<OrderLine> getOrderLineListItems()
+    {
+        return orderLineListItems;
+    }
+
+    public void setOrderLineListItems(List<OrderLine> orderLineListItems)
+    {
+        this.orderLineListItems = orderLineListItems;
+    }
 }

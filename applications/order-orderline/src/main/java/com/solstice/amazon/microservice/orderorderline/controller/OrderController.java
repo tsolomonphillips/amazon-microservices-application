@@ -19,13 +19,6 @@ public class OrderController
         this.orderService = orderService;
     }
 
-    @PostMapping("/{accountId}/{shippingAddressId}")
-    public Order addOrder(@RequestBody Order order, @PathVariable Integer accountId,
-                          @PathVariable Integer shippingAddressId)
-    {
-        return orderService.addOrder(order, accountId, shippingAddressId);
-    }
-
     @GetMapping("")
     public List<Order> getAllOrders()
     {
@@ -36,6 +29,18 @@ public class OrderController
     public Order getOneOrder(@PathVariable Integer orderId)
     {
         return orderService.getOneOrder(orderId);
+    }
+
+    @GetMapping("/account/{accountId}")
+    public List<Order> getAllOrdersForAccount(@PathVariable Integer accountId)
+    {
+        return orderService.getAllOrdersForAccount(accountId);
+    }
+
+    @PostMapping("")
+    public Order addOrder(@RequestBody Order order)
+    {
+        return orderService.addOrder(order);
     }
 
     @PutMapping("/{orderId}")
@@ -52,9 +57,4 @@ public class OrderController
         return new ResponseEntity(HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("/{orderId}/{accountId}")
-    public List<Order> getAllOrdersForAccount(@PathVariable Integer accountId)
-    {
-        return orderService.getAllOrdersForAccount(accountId);
-    }
 }
