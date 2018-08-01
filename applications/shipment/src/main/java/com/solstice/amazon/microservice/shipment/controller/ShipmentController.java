@@ -32,7 +32,7 @@ public class ShipmentController
     }
 
     @PostMapping("")
-    public ResponseEntity addShipment(Shipment shipment)
+    public ResponseEntity addShipment(@RequestBody Shipment shipment)
     {
         shipmentService.addShipment(shipment);
         return new ResponseEntity(HttpStatus.CREATED);
