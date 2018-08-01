@@ -14,12 +14,12 @@ public class Shipment
     private Integer shipmentId;
 
     private Integer accountId;
-    private Integer addressId;
+    private Integer shippingAddressId;
     private Integer orderLineId;
 
     @Temporal(TemporalType.DATE)
     @JsonFormat(pattern = "MM-dd-yyyy")
-    private Date shppedDate;
+    private Date shippedDate;
 
     @Temporal(TemporalType.DATE)
     @JsonFormat(pattern = "MM-dd-yyyy")
@@ -30,20 +30,25 @@ public class Shipment
 
     }
 
-    public Shipment(Integer shipmentId, Integer accountId, Integer addressId,
-                    Integer orderLineId, Date shppedDate, Date deliveryDate)
+    public Shipment(Integer shipmentId, Integer accountId, Integer shippingAddressId,
+                    Integer orderLineId, Date shippedDate, Date deliveryDate)
     {
         this.shipmentId = shipmentId;
         this.accountId = accountId;
-        this.addressId = addressId;
+        this.shippingAddressId = shippingAddressId;
         this.orderLineId = orderLineId;
-        this.shppedDate = shppedDate;
+        this.shippedDate = shippedDate;
         this.deliveryDate = deliveryDate;
     }
 
     public Integer getShipmentId()
     {
         return shipmentId;
+    }
+
+    public void setShipmentId(Integer shipmentId)
+    {
+        this.shipmentId = shipmentId;
     }
 
     public Integer getAccountId()
@@ -56,14 +61,14 @@ public class Shipment
         this.accountId = accountId;
     }
 
-    public Integer getAddressId()
+    public Integer getShippingAddressId()
     {
-        return addressId;
+        return shippingAddressId;
     }
 
-    public void setAddressId(Integer addressId)
+    public void setShippingAddressId(Integer shippingAddressId)
     {
-        this.addressId = addressId;
+        this.shippingAddressId = shippingAddressId;
     }
 
     public Integer getOrderLineId()
@@ -76,14 +81,14 @@ public class Shipment
         this.orderLineId = orderLineId;
     }
 
-    public Date getShppedDate()
+    public Date getShippedDate()
     {
-        return shppedDate;
+        return shippedDate;
     }
 
-    public void setShppedDate(Date shppedDate)
+    public void setShippedDate(Date shippedDate)
     {
-        this.shppedDate = shppedDate;
+        this.shippedDate = shippedDate;
     }
 
     public Date getDeliveryDate()
