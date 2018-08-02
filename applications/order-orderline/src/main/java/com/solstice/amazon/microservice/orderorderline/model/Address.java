@@ -1,18 +1,8 @@
-package com.solstice.amazon.microservice.accountaddress.model;
+package com.solstice.amazon.microservice.orderorderline.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
-import javax.persistence.*;
-
-@Entity
-@Table(name = "address")
 public class Address
 {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "address_id")
     private Integer addressId;
-
     private String street;
     private String aptBuilding;
     private String city;
@@ -20,33 +10,31 @@ public class Address
     private String zipPostalCode;
     private String country;
 
-    @ManyToOne
-    //@JoinColumn(name = "account_id")
-    @JsonBackReference
-    private Account account;
-
-
     public Address()
     {
 
     }
 
     public Address(Integer addressId, String street, String aptBuilding,
-                   String city, String stateProvince, String zipPostalCode,
-                   String country, Account account)
+                   String city, String stateProvince, String zipPostalCode, String country)
     {
         this.addressId = addressId;
         this.street = street;
         this.aptBuilding = aptBuilding;
         this.city = city;
+        this.stateProvince = stateProvince;
         this.zipPostalCode = zipPostalCode;
         this.country = country;
-        this.account = account;
     }
 
     public Integer getAddressId()
     {
-        return this.addressId;
+        return addressId;
+    }
+
+    public void setAddressId(Integer addressId)
+    {
+        this.addressId = addressId;
     }
 
     public String getStreet()
@@ -108,19 +96,4 @@ public class Address
     {
         this.country = country;
     }
-
-    public void setAccount(Account account)
-    {
-        this.account = account;
-    }
-
-    public Account getAccount()
-    {
-        return account;
-    }
-
-//    public Integer getAccount()
-//    {
-//        return account.getAccountId();
-//    }
 }

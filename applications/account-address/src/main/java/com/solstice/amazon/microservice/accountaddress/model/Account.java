@@ -1,6 +1,8 @@
 package com.solstice.amazon.microservice.accountaddress.model;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +21,7 @@ public class Account
     private String emailAddress;
 
     @OneToMany
+    @JsonManagedReference
     private List<Address> addressList = new ArrayList<>();
 
     public Account()

@@ -1,5 +1,6 @@
 package com.solstice.amazon.microservice.orderorderline.service;
 
+import com.solstice.amazon.microservice.orderorderline.model.Address;
 import com.solstice.amazon.microservice.orderorderline.model.Order;
 import com.solstice.amazon.microservice.orderorderline.model.OrderDetail;
 import com.solstice.amazon.microservice.orderorderline.repository.OrderLineRepository;
@@ -18,8 +19,8 @@ public class OrderService
     private OrderLineRepository orderLineRepository;
     private RestTemplate restTemplate;
 
-    public OrderService(OrderRepository orderRepository, OrderLineRepository orderLineRepository,
-                        RestTemplate restTemplate)
+    public OrderService(OrderRepository orderRepository,
+                        OrderLineRepository orderLineRepository, RestTemplate restTemplate)
     {
         this.orderRepository = orderRepository;
         this.orderLineRepository = orderLineRepository;
@@ -68,6 +69,28 @@ public class OrderService
     {
         OrderDetail orderDetail = new OrderDetail();
 
-        return null;
+        Address address = restTemplate.getForObject("http://account-address/accounts/"
+                + accountId + "/address", Address.class);
+
+        for (Order order : orderRepository.findAll())
+        {
+            if (order.getAccountId() == accountId)
+            {
+                orderDetail.setOrderNumber(order.getOrderNumber());
+                orderDetail.setTotalPrice(order.getTotalPrice());
+            }
+        }
+
+        for (Order order : orderRepository.findAll())
+        {
+            if (order.getShippingAddressId() == address.getAddressId())
+            {
+                orderDetail.getAddressList().add(address);
+            }
+        }
+
+        // get shipment
+
+        return orderDetail;
     }
 }

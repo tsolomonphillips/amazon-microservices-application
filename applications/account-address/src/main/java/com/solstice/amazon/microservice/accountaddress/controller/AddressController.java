@@ -19,23 +19,14 @@ public class AddressController
         this.addressService = addressService;
     }
 
-    // TODO: 8/1/18 Need to fix this method (I am getting a (405 error code with a message of Method not allowed and request method not supported
-    // todo and org.springframework.web.HttpRequestMethodNotSupportedException: request method GET not supported
-
-    @GetMapping("account_id")
-    public List<Address> getByAccountId(@PathVariable Integer accountId)
+    @GetMapping("")
+    public List<Address> getByAccountId(@PathVariable(name = "account_id") Integer accountId)
     {
         return addressService.getAddressByAccount(accountId);
     }
 
-//    @GetMapping("")
-//    public Address getAddressById(@PathVariable Integer addressId)
-//    {
-//        return addressService.getAddress(addressId);
-//    }
-
     @PostMapping("")
-    public ResponseEntity addAddress(@PathVariable Integer accountId,
+    public ResponseEntity addAddress(@PathVariable(name = "account_id") Integer accountId,
                                      @RequestBody Address address)
     {
         addressService.addAddress(accountId, address);

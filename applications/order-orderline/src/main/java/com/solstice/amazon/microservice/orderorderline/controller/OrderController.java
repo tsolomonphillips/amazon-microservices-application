@@ -1,6 +1,7 @@
 package com.solstice.amazon.microservice.orderorderline.controller;
 
 import com.solstice.amazon.microservice.orderorderline.model.Order;
+import com.solstice.amazon.microservice.orderorderline.model.OrderDetail;
 import com.solstice.amazon.microservice.orderorderline.service.OrderService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,10 +26,10 @@ public class OrderController
         return orderService.getAllOrders();
     }
 
-    @GetMapping("/{orderId}")
-    public Order getOneOrder(@PathVariable Integer orderId)
+    @GetMapping(value = "/{orderId}")
+    public OrderDetail getOneOrder(@PathVariable(name = "accountId") Integer accountId)
     {
-        return orderService.getOneOrder(orderId);
+        return orderService.getOrderDetailForAccount(accountId);
     }
 
     @GetMapping("/account/{accountId}")

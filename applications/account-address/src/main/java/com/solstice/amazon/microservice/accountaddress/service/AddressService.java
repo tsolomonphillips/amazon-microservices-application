@@ -25,6 +25,7 @@ public class AddressService
     public ResponseEntity addAddress(Integer accountId, Address address)
     {
         Account account = accountRepository.getOne(accountId);
+        account.getAddressList().add(address);
         address.setAccount(account);
 
         addressRepository.save(address);
@@ -39,7 +40,7 @@ public class AddressService
     public List<Address> getAddressByAccount(Integer accountId)
     {
         Account account = accountRepository.getOne(accountId);
-        return addressRepository.findByAccount(account.getAccountId());
+        return addressRepository.findByAccount(account);
     }
 
     public Address getOneAddress(Integer addressId)
