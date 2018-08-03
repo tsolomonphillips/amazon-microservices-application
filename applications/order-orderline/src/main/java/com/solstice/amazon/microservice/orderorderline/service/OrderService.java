@@ -1,10 +1,9 @@
 package com.solstice.amazon.microservice.orderorderline.service;
 
-import com.solstice.amazon.microservice.orderorderline.model.Address;
-import com.solstice.amazon.microservice.orderorderline.model.Order;
-import com.solstice.amazon.microservice.orderorderline.model.OrderDetail;
+import com.solstice.amazon.microservice.orderorderline.model.*;
 import com.solstice.amazon.microservice.orderorderline.repository.OrderLineRepository;
 import com.solstice.amazon.microservice.orderorderline.repository.OrderRepository;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -65,29 +64,25 @@ public class OrderService
         return orderRepository.findAllByAccountIdOrderByOrderDateDesc(accountId);
     }
 
-    public OrderDetail getOrderDetailForAccount(Integer accountId)
+    public OrderDetail getOrderDetailForAccount(Integer accountId, Integer addressId)
     {
         OrderDetail orderDetail = new OrderDetail();
+        List<Order> orderList = orderRepository.findAllByAccountIdOrderByOrderDateDesc(accountId);
+
+        for (Order order : orderList)
+        {
+            orderDetail.setOrderNumber(order.getOrderNumber());
+            orderDetail.setTotalPrice(order.getTotalPrice());
+        }
 
         Address address = restTemplate.getForObject("http://account-address/accounts/"
-                + accountId + "/address", Address.class);
+                + accountId + "/address/" + addressId, Address.class);
 
-        for (Order order : orderRepository.findAll())
-        {
-            if (order.getAccountId() == accountId)
-            {
-                orderDetail.setOrderNumber(order.getOrderNumber());
-                orderDetail.setTotalPrice(order.getTotalPrice());
-            }
-        }
 
-        for (Order order : orderRepository.findAll())
-        {
-            if (order.getShippingAddressId() == address.getAddressId())
-            {
-                orderDetail.getAddressList().add(address);
-            }
-        }
+        orderDetail.setShippingAddress(address);
+
+
+
 
         // get shipment
 

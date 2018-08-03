@@ -45,26 +45,7 @@ public class AddressService
 
     public Address getOneAddress(Integer addressId)
     {
-        try
-        {
-            Address address = addressRepository.getOne(addressId);
-
-            if (getAddressList().contains(address))
-            {
-                return address;
-            }
-            else
-            {
-                throw new IllegalArgumentException();
-            }
-        }
-        catch (Exception e)
-        {
-            e.getMessage();
-            e.printStackTrace();
-        }
-
-        return null;
+        return addressRepository.getOne(addressId);
     }
 
     public Address getAddress(Integer addressId)

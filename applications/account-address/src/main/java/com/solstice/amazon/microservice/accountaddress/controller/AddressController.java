@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.ws.rs.Path;
 import java.util.List;
 
 @RestController
@@ -39,4 +40,11 @@ public class AddressController
         addressService.deleteAddress(addressId);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
+
+    @GetMapping("/{addressId}")
+    public Address getOneAddress(@PathVariable Integer addressId)
+    {
+        return addressService.getOneAddress(addressId);
+    }
+
 }

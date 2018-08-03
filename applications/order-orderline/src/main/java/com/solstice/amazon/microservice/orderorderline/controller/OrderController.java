@@ -26,10 +26,11 @@ public class OrderController
         return orderService.getAllOrders();
     }
 
-    @GetMapping(value = "/{orderId}")
-    public OrderDetail getOneOrder(@PathVariable(name = "accountId") Integer accountId)
+    @GetMapping(value = "/{accountId}/{addressId}")
+    public OrderDetail getOneOrder(@PathVariable(name = "accountId") Integer accountId,
+                                   @PathVariable Integer addressId)
     {
-        return orderService.getOrderDetailForAccount(accountId);
+        return orderService.getOrderDetailForAccount(accountId, addressId);
     }
 
     @GetMapping("/account/{accountId}")

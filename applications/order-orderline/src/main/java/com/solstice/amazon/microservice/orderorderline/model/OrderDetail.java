@@ -1,16 +1,17 @@
 package com.solstice.amazon.microservice.orderorderline.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
+import java.util.ArrayList;
 import java.util.List;
 
 public class OrderDetail
 {
     private String orderNumber;
-    private List<Address> addressList;
+    private Address shippingAddress;
     private Double totalPrice;
+    private List<Shipment> shipmentList = new ArrayList<>();
+    private List<Order> orderList;
 
-    @JsonIgnoreProperties({"orderLineId, price, shipmentId"})
+    //@JsonIgnoreProperties({"orderLineId, price, shipmentId"})
     private List<OrderLine> orderLineListItems;
 
     public OrderDetail()
@@ -18,12 +19,14 @@ public class OrderDetail
 
     }
 
-    public OrderDetail(String orderNumber, List<Address> addressList,
-                       Double totalPrice, List<OrderLine> orderLineListItems)
+    public OrderDetail(String orderNumber, Address shippingAddress, Double totalPrice,
+                       List<Shipment> shipmentList, List<Order> orderList, List<OrderLine> orderLineListItems)
     {
         this.orderNumber = orderNumber;
-        this.addressList = addressList;
+        this.shippingAddress = shippingAddress;
         this.totalPrice = totalPrice;
+        this.shipmentList = shipmentList;
+        this.orderList = orderList;
         this.orderLineListItems = orderLineListItems;
     }
 
@@ -37,14 +40,14 @@ public class OrderDetail
         this.orderNumber = orderNumber;
     }
 
-    public List<Address> getAddressList()
+    public Address getShippingAddress()
     {
-        return addressList;
+        return shippingAddress;
     }
 
-    public void setAddressList(List<Address> addressList)
+    public void setShippingAddress(Address shippingAddress)
     {
-        this.addressList = addressList;
+        this.shippingAddress = shippingAddress;
     }
 
     public Double getTotalPrice()
@@ -57,6 +60,26 @@ public class OrderDetail
         this.totalPrice = totalPrice;
     }
 
+    public List<Shipment> getShipmentList()
+    {
+        return shipmentList;
+    }
+
+    public void setShipmentList(List<Shipment> shipmentList)
+    {
+        this.shipmentList = shipmentList;
+    }
+
+    public List<Order> getOrderList()
+    {
+        return orderList;
+    }
+
+    public void setOrderList(List<Order> orderList)
+    {
+        this.orderList = orderList;
+    }
+
     public List<OrderLine> getOrderLineListItems()
     {
         return orderLineListItems;
@@ -66,4 +89,5 @@ public class OrderDetail
     {
         this.orderLineListItems = orderLineListItems;
     }
+
 }
