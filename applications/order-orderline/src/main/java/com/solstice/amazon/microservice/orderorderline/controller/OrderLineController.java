@@ -18,8 +18,6 @@ public class OrderLineController
     {
         this.orderLineService = orderLineService;
     }
-
-    // TODO: 7/31/18 Need to refactor this get mapping (see getAllOrderLineItems method) 
     
     @GetMapping("")
     public List<OrderLine> getAllOrderLines(@PathVariable Integer orderId)

@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -35,21 +36,18 @@ public class OrderLineService
         return orderLineRepository.save(orderLine);
     }
 
-    // TODO: 7/31/18 Need to refactor this method (getting a concurrent error message) 
-    
     public List<OrderLine> getAllOrderLineItems(Integer orderId)
     {
         List<OrderLine> orderLineList = orderLineRepository.findAll();
+        List<OrderLine> newOrderLineList = new ArrayList<>();
 
         for (OrderLine orderLine : orderLineList)
         {
             if (orderLine.getOrder().getOrderId() == orderId)
             {
-                orderLineList.add(orderLine);
+                newOrderLineList.add(orderLine);
             }
         }
-
-        List<OrderLine> newOrderLineList = orderLineList.subList(0, orderLineList.size());
 
         return newOrderLineList;
     }

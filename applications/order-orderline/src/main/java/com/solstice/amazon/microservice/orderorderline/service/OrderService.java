@@ -78,11 +78,7 @@ public class OrderService
         Address address = restTemplate.getForObject("http://account-address/accounts/"
                 + accountId + "/address/" + addressId, Address.class);
 
-
         orderDetail.setShippingAddress(address);
-
-
-
 
         // get shipment
 
