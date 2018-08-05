@@ -1,5 +1,7 @@
 package com.solstice.amazon.microservice.orderorderline.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,9 +12,10 @@ public class OrderDetail
     private Double totalPrice;
     private List<Shipment> shipmentList = new ArrayList<>();
     private List<Order> orderList;
+    private String productName;
 
-    //@JsonIgnoreProperties({"orderLineId, price, shipmentId"})
-    private List<OrderLine> orderLineListItems;
+    @JsonIgnoreProperties({"orderLineId", "productId", "price", "totalPrice"})
+    private List<OrderLine> orderLineListItems = new ArrayList<>();
 
     public OrderDetail()
     {
@@ -20,7 +23,8 @@ public class OrderDetail
     }
 
     public OrderDetail(String orderNumber, Address shippingAddress, Double totalPrice,
-                       List<Shipment> shipmentList, List<Order> orderList, List<OrderLine> orderLineListItems)
+                       List<Shipment> shipmentList, List<Order> orderList,
+                       List<OrderLine> orderLineListItems, String productName)
     {
         this.orderNumber = orderNumber;
         this.shippingAddress = shippingAddress;
@@ -28,6 +32,7 @@ public class OrderDetail
         this.shipmentList = shipmentList;
         this.orderList = orderList;
         this.orderLineListItems = orderLineListItems;
+        this.productName = productName;
     }
 
     public String getOrderNumber()
@@ -90,4 +95,13 @@ public class OrderDetail
         this.orderLineListItems = orderLineListItems;
     }
 
+    public String getProductName()
+    {
+        return productName;
+    }
+
+    public void setProductName(String productName)
+    {
+        this.productName = productName;
+    }
 }

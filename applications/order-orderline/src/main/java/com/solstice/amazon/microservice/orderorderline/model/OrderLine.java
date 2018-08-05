@@ -16,6 +16,7 @@ public class OrderLine
     private Double price;
     private Double totalPrice;
     private Integer shipmentId;
+    private String productName;
 
     @ManyToOne
     @JsonBackReference
@@ -27,13 +28,14 @@ public class OrderLine
     }
 
     public OrderLine(Integer orderLineId, Integer productId, Integer quantity,
-                     Double price, Integer shipmentId, Order order)
+                     Double price, Integer shipmentId, Order order, String productName)
     {
         this.orderLineId = orderLineId;
         this.productId = productId;
         this.quantity = quantity;
         this.price = price;
         this.shipmentId = shipmentId;
+        this.productName = productName;
     }
 
     public Integer getOrderLineId()
@@ -99,5 +101,15 @@ public class OrderLine
     public void setOrder(Order order)
     {
         this.order = order;
+    }
+
+    public String getProductName()
+    {
+        return productName;
+    }
+
+    public void setProductName(String productName)
+    {
+        this.productName = productName;
     }
 }

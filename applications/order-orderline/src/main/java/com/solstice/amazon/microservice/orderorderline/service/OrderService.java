@@ -3,12 +3,12 @@ package com.solstice.amazon.microservice.orderorderline.service;
 import com.solstice.amazon.microservice.orderorderline.model.*;
 import com.solstice.amazon.microservice.orderorderline.repository.OrderLineRepository;
 import com.solstice.amazon.microservice.orderorderline.repository.OrderRepository;
-import org.aspectj.weaver.ast.Or;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -64,10 +64,10 @@ public class OrderService
         return orderRepository.findAllByAccountIdOrderByOrderDateDesc(accountId);
     }
 
-    public OrderDetail getOrderDetailForAccount(Integer accountId, Integer addressId)
+    public OrderDetail getOrderDetailForAccount(Integer orderId, Integer addressId)
     {
         OrderDetail orderDetail = new OrderDetail();
-        List<Order> orderList = orderRepository.findAllByAccountIdOrderByOrderDateDesc(accountId);
+        Iterable<Order> orderList = orderRepository.findAllByOrderId(orderId);
 
         for (Order order : orderList)
         {
@@ -76,10 +76,25 @@ public class OrderService
         }
 
         Address address = restTemplate.getForObject("http://account-address/accounts/"
-                + accountId + "/address/" + addressId, Address.class);
+                + orderId + "/address/" + addressId, Address.class);
 
         orderDetail.setShippingAddress(address);
 
+        // working on populating orderLine items
+
+        Order order = orderRepository.getOne(orderId);
+
+        for (OrderLine orderLine : orderLineRepository.findAll())
+        {
+            if (orderLine.getOrder().getOrderId() == order.getOrderId())
+            {
+                orderDetail.getOrderLineListItems().add(orderLine);
+                Product product = restTemplate.getForObject
+                        ("http://product/products/" + orderLine.getProductId(), Product.class);
+                orderLine.setProductName(product.getName());
+            }
+        }
+        
         // get shipment
 
         return orderDetail;

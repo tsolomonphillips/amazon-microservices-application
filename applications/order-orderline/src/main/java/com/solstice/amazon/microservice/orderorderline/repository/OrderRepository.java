@@ -13,4 +13,5 @@ public interface OrderRepository extends JpaRepository<Order, Integer>
     List<Order> findAllByShippingAddressIdOrderByOrderDateDesc(Integer accountId);
     Order findByAccountId(Integer accountId);
     Order findByShippingAddressId(Integer shippingAddressId);
+    Iterable<Order> findAllByOrderId(Integer orderId);
 }
