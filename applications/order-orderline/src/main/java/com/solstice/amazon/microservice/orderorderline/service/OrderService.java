@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -92,10 +91,16 @@ public class OrderService
                 Product product = restTemplate.getForObject
                         ("http://product/products/" + orderLine.getProductId(), Product.class);
                 orderLine.setProductName(product.getName());
+
+
+                Shipment shipment = restTemplate.getForObject
+                        ("http://shipment/shipments/" + orderLine.getShipmentId(), Shipment.class);
+
+                orderDetail.getShipmentList().add(shipment);
+
+                shipment.getOrderLineItems().add(orderLine);
             }
         }
-        
-        // get shipment
 
         return orderDetail;
     }

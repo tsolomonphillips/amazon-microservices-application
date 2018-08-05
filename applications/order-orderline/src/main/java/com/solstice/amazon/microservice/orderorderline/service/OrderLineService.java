@@ -28,7 +28,7 @@ public class OrderLineService
         Order order = orderRepository.getOne(orderId);
 
         orderLine.setOrder(order);
-        orderLine.setShipmentId(order.getShippingAddressId());
+        orderLine.setShipmentId(orderLine.getShipmentId());
         orderLine.setTotalPrice(orderLine.getTotalPrice());
 
         order.getOrderLineList().add(orderLine);
