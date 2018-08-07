@@ -7,7 +7,8 @@ import java.util.List;
 
 public interface ShipmentRepository extends JpaRepository<Shipment, Integer>
 {
-    List<Shipment> findByAccountId(Integer accountId);
+    List<Shipment> findAllByAccountIdOrderByDeliveryDateDesc(Integer accountId);
+    Shipment findByShipmentId(Integer shipmentId);
     Shipment findByOrderLineId(Integer orderLineId);
     Shipment findByShippingAddressId(Integer shippingAddressId);
 }

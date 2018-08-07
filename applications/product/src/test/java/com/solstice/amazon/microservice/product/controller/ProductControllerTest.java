@@ -21,6 +21,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -57,8 +58,9 @@ public class ProductControllerTest
         mockMvc
                 .perform(post("/products")
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isCreated())
                 .andReturn();
+
+        assertEquals("Gummy Bears", product.getName());
     }
 
     @Test
@@ -84,8 +86,9 @@ public class ProductControllerTest
         mockMvc
                 .perform(get("/products")
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
                 .andReturn();
+
+        assertEquals(3, productList.size());
     }
 
 

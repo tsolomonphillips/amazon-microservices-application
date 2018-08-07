@@ -1,6 +1,7 @@
 package com.solstice.amazon.microservice.shipment.controller;
 
 import com.solstice.amazon.microservice.shipment.model.Shipment;
+import com.solstice.amazon.microservice.shipment.model.ShipmentDetail;
 import com.solstice.amazon.microservice.shipment.service.ShipmentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,15 +21,22 @@ public class ShipmentController
     }
 
     @GetMapping("")
-    public List<Shipment> getAllShipments()
+    public List<ShipmentDetail> getAllShipments(@PathVariable Integer accountId)
     {
-        return shipmentService.getAllShipments();
+        //return shipmentService.getAllShipments();
+        return shipmentService.getShipmentDetails(accountId);
     }
 
     @GetMapping("/{shipmentId}")
     public Shipment getOneShipment(@PathVariable Integer shipmentId)
     {
         return shipmentService.getOneShipment(shipmentId);
+    }
+
+    @GetMapping("/account/{accountId}")
+    public List<Shipment> getShipmentsByAccount(@PathVariable Integer accountId)
+    {
+        return shipmentService.getShipmentsByAccountId(accountId);
     }
 
     @PostMapping("")

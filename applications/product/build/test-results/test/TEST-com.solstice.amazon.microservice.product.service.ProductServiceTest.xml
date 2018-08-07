@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.solstice.amazon.microservice.product.service.ProductServiceTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2018-08-06T19:44:57" hostname="Tyree-Solomon-Phillips-MacBook-Pro.local" time="0.02">
+  <properties/>
+  <testcase name="updateProduct" classname="com.solstice.amazon.microservice.product.service.ProductServiceTest" time="0.004"/>
+  <testcase name="getAllProducts" classname="com.solstice.amazon.microservice.product.service.ProductServiceTest" time="0.004"/>
+  <testcase name="getOneProduct" classname="com.solstice.amazon.microservice.product.service.ProductServiceTest" time="0.006"/>
+  <testcase name="addProduct" classname="com.solstice.amazon.microservice.product.service.ProductServiceTest" time="0.004"/>
+  <system-out><![CDATA[2018-08-06 14:44:52.956  INFO 58894 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.solstice.amazon.microservice.product.service.ProductServiceTest], using SpringBootContextLoader
+2018-08-06 14:44:52.957  INFO 58894 --- [    Test worker] o.s.t.c.support.AbstractContextLoader    : Could not detect default resource locations for test class [com.solstice.amazon.microservice.product.service.ProductServiceTest]: no resource found for suffixes {-context.xml, Context.groovy}.
+2018-08-06 14:44:52.958  INFO 58894 --- [    Test worker] t.c.s.AnnotationConfigContextLoaderUtils : Could not detect default configuration classes for test class [com.solstice.amazon.microservice.product.service.ProductServiceTest]: ProductServiceTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2018-08-06 14:44:52.982  INFO 58894 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Found @SpringBootConfiguration com.solstice.amazon.microservice.product.ProductApplication for test class com.solstice.amazon.microservice.product.service.ProductServiceTest
+2018-08-06 14:44:52.984  INFO 58894 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]
+2018-08-06 14:44:52.984  INFO 58894 --- [    Test worker] .b.t.c.SpringBootTestContextBootstrapper : Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@37b28593, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@3c1d917c, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@6277cd15, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@3eaaf09, org.springframework.test.context.support.DirtiesContextTestExecutionListener@20573cfa, org.springframework.test.context.transaction.TransactionalTestExecutionListener@7011cffd, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@2c52bb8f, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@7a16cbeb, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@63bf88bf, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@1d2fdd12, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@241893fb, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@681d5d00]
+2018-08-06 14:44:53.156  INFO 58894 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'configurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$de969e5d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::  (v2.1.0.BUILD-SNAPSHOT)
+
+2018-08-06 14:44:53.197  INFO 58894 --- [    Test worker] c.s.a.m.p.service.ProductServiceTest     : No active profile set, falling back to default profiles: default
+2018-08-06 14:44:53.938  INFO 58894 --- [    Test worker] o.s.cloud.context.scope.GenericScope     : BeanFactory id=5a4fcf0f-3f31-327d-9631-42f203707a4a
+2018-08-06 14:44:54.035  INFO 58894 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration$$EnhancerBySpringCGLIB$$c27c9b60] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-08-06 14:44:54.064  INFO 58894 --- [    Test worker] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration$$EnhancerBySpringCGLIB$$de969e5d] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2018-08-06 14:44:54.314  INFO 58894 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2018-08-06 14:44:54.475  INFO 58894 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2018-08-06 14:44:54.565  INFO 58894 --- [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2018-08-06 14:44:54.645  INFO 58894 --- [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate Core {5.3.3.Final}
+2018-08-06 14:44:54.647  INFO 58894 --- [    Test worker] org.hibernate.cfg.Environment            : HHH000206: hibernate.properties not found
+2018-08-06 14:44:54.701  INFO 58894 --- [    Test worker] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.0.4.Final}
+2018-08-06 14:44:54.880  INFO 58894 --- [    Test worker] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2018-08-06 14:44:55.093  INFO 58894 --- [    Test worker] org.hibernate.type.BasicTypeRegistry     : HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@4ceb8cbb
+Hibernate: 
+    
+    drop table if exists productdb cascade
+Hibernate: 
+    
+    drop sequence if exists hibernate_sequence
+Hibernate: create sequence hibernate_sequence start 1 increment 1
+Hibernate: 
+    
+    create table productdb (
+       product_id int4 not null,
+        description varchar(255),
+        image varchar(255),
+        name varchar(255),
+        price float8,
+        primary key (product_id)
+    )
+2018-08-06 14:44:55.541  INFO 58894 --- [    Test worker] o.h.t.schema.internal.SchemaCreatorImpl  : HHH000476: Executing import script 'org.hibernate.tool.schema.internal.exec.ScriptSourceInputNonExistentImpl@4c132378'
+2018-08-06 14:44:55.544  INFO 58894 --- [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2018-08-06 14:44:55.926  INFO 58894 --- [    Test worker] .s.s.UserDetailsServiceAutoConfiguration : 
+
+Using generated security password: adc844ab-a1a0-4298-a64e-3e8c04779a80
+
+2018-08-06 14:44:56.000  INFO 58894 --- [    Test worker] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5efa26c8, org.springframework.security.web.context.SecurityContextPersistenceFilter@1e0f08c1, org.springframework.security.web.header.HeaderWriterFilter@256716bd, org.springframework.security.web.authentication.logout.LogoutFilter@4070e865, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@51cfdafc, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4c80fc86, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@13a29f07, org.springframework.security.web.session.SessionManagementFilter@2f746102, org.springframework.security.web.access.ExceptionTranslationFilter@1dfa4ea2, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@533cd3d]
+2018-08-06 14:44:56.067  WARN 58894 --- [    Test worker] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2018-08-06 14:44:56.067  INFO 58894 --- [    Test worker] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2018-08-06 14:44:56.074  WARN 58894 --- [    Test worker] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2018-08-06 14:44:56.074  INFO 58894 --- [    Test worker] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2018-08-06 14:44:56.122  INFO 58894 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService  'applicationTaskExecutor'
+2018-08-06 14:44:57.401  INFO 58894 --- [    Test worker] c.s.a.m.p.service.ProductServiceTest     : Started ProductServiceTest in 4.342 seconds (JVM running for 8.901)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
